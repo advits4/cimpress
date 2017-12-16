@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {#{{ dump() }}#}
+    <div class="content-wrapper">
+        <h1>
+            Browse Repositories 
+            {% if filter != '' %}
+                for keyword "{{filter}}"
+            {% endif %}
+        </h1>
+
+        <div>
+            <form action="{{ path('list') }}" method="get">
+                <label for="filter">Filter</label>
+                <input name="filter" type="text" class="" value="{{ filter }}" placeholder="by name">
+                <button type="submit" class="btn btn-default btn-sm">Filter Now</button>
+                <input type="reset" class="btn btn-default btn-sm">
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                {% if datas.getTotalItemCount > 0 %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Sr.No.</th>
+                            <th>Name</th>
+                            <th>Owner</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for repository in datas %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ repository.name }}</td>
+                            <td>{{ repository.owner }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                    <p class="alert">
+                        No repositories found for keyword "<strong>{{ filter }}</strong>"!
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="text-center">
+		    {{ knp_pagination_render(datas) }}
+		</div>
+    </div>
+
+{% endblock %}
