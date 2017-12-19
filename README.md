@@ -19,3 +19,16 @@ To start off with this project
 
 
 Done, now you can use the application to filter with pagination!
+
+You can start the inbuilt php server using the "php bin/console server:run" command and
+access the application directly at localhost:8000/
+
+
+
+Features
+--------------
+
+ * An import service built to import the repositories from github into the local database. 
+ * Implemented pagination with incremental data transition
+ * Search option to filter through the pages
+ 
