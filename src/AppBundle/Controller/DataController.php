@@ -13,7 +13,6 @@ class DataController extends Controller
     public function __construct(ImportService $importService)
     {
         $this->importService = $importService;
-        // $this->conn = $this->container->get('doctrine.dbal.default_connection');
     }
 
     /**
